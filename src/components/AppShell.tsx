@@ -57,13 +57,13 @@ export function AppShell({ children }: { children: ReactNode }) {
     profile?.avatar_url || meta?.["avatar_url"] || meta?.["picture"] || null;
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Top Navbar */}
-      <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-border bg-background/80 px-4 py-3.5 backdrop-blur-md sm:px-6 sm:py-4">
-        <div className="flex items-center gap-4 sm:gap-8">
-          <Link to="/dashboard" className="flex items-center gap-2 text-xl font-extrabold uppercase tracking-tighter transition-opacity hover:opacity-90 sm:gap-2.5 sm:text-2xl">
+      <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-border bg-background/90 px-3.5 py-2.5 backdrop-blur-md sm:px-6 sm:py-3.5">
+        <div className="flex items-center gap-3 sm:gap-6 min-w-0">
+          <Link to="/dashboard" className="flex items-center gap-2 text-lg font-black uppercase tracking-tight transition-opacity hover:opacity-90 sm:gap-2.5 sm:text-2xl shrink-0">
             <img src="/favicon.png" alt="GlobeTrotter logo" className="size-6 rounded-md object-contain sm:size-7" />
-            <span>GlobeTrotter</span>
+            <span className="truncate">GlobeTrotter</span>
           </Link>
           <div className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
             {NAV.map((n) => (
@@ -79,13 +79,13 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <Link
             to="/trips/new"
-            className="bg-foreground px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-background transition-colors hover:bg-primary sm:px-4 sm:py-2 sm:text-xs sm:tracking-widest"
+            className="inline-flex items-center justify-center bg-foreground px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-background transition-colors hover:bg-primary sm:px-4 sm:py-2 sm:text-xs sm:tracking-widest"
           >
-            <span className="sm:hidden">+ Plan</span>
-            <span className="hidden sm:inline">Plan New Trip</span>
+            <span>+ Plan</span>
+            <span className="hidden sm:inline">&nbsp;Trip</span>
           </Link>
 
           {/* User Avatar & Dropdown */}
@@ -94,7 +94,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}
               title={displayName}
-              className="relative grid size-8.5 place-items-center overflow-hidden rounded-full border border-border bg-muted font-mono text-[10px] font-bold transition-all hover:ring-2 hover:ring-primary focus:outline-none sm:size-9"
+              className="relative grid size-8 place-items-center overflow-hidden rounded-full border border-border bg-muted font-mono text-[10px] font-bold transition-all hover:ring-2 hover:ring-primary focus:outline-none sm:size-9"
             >
               {avatarUrl ? (
                 <img
@@ -111,7 +111,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </button>
 
             {menuOpen && (
-              <div className="animate-rise absolute right-0 top-11 z-50 w-56 border border-border bg-card p-2 shadow-2xl sm:top-12">
+              <div className="animate-rise absolute right-0 top-10 z-50 w-56 border border-border bg-card p-2 shadow-2xl sm:top-12">
                 <div className="border-b border-border px-3 py-2.5">
                   <div className="truncate font-bold text-sm">{displayName}</div>
                   <div className="truncate font-mono text-[10px] text-muted-foreground">
@@ -119,7 +119,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                   </div>
                 </div>
 
-                {/* Mobile Navigation Links */}
+                {/* Mobile Navigation Links in Dropdown */}
                 <div className="border-b border-border py-1 md:hidden">
                   {NAV.map((n) => (
                     <Link
@@ -161,11 +161,11 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </nav>
 
-      {/* Main Content Area with padding for bottom bars */}
-      <main className="mx-auto max-w-7xl px-4 py-6 pb-28 sm:px-6 sm:py-10 md:pb-20">{children}</main>
+      {/* Main Content Area with safe bottom spacing for mobile bar */}
+      <main className="mx-auto w-full max-w-7xl flex-1 px-3.5 py-5 pb-24 sm:px-6 sm:py-8 md:pb-16">{children}</main>
 
       {/* Desktop Footer */}
-      <footer className="hidden md:flex fixed bottom-0 left-0 right-0 z-40 items-center justify-between border-t border-border bg-card/90 px-6 py-4 font-mono text-[10px] uppercase tracking-widest backdrop-blur-sm">
+      <footer className="hidden md:flex items-center justify-between border-t border-border bg-card px-6 py-4 font-mono text-[10px] uppercase tracking-widest">
         <div className="flex gap-6">
           <span>Session: {user?.email ?? "guest"}</span>
           <span>Cloud synced</span>
@@ -182,44 +182,44 @@ export function AppShell({ children }: { children: ReactNode }) {
       </footer>
 
       {/* Mobile Bottom Navigation Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-border bg-card/95 px-2 py-2 backdrop-blur-md md:hidden shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-border bg-card/95 px-2 pt-1.5 pb-[max(env(safe-area-inset-bottom,0px),0.5rem)] backdrop-blur-lg shadow-xl md:hidden">
         <Link
           to="/dashboard"
           activeProps={{ className: "text-primary font-bold" }}
-          className="flex flex-col items-center gap-0.5 p-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+          className="flex flex-1 flex-col items-center justify-center py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground active:scale-95"
         >
-          <span className="text-base">⚡</span>
+          <span className="text-base leading-none mb-1">⚡</span>
           <span>Home</span>
         </Link>
         <Link
           to="/trips"
           activeProps={{ className: "text-primary font-bold" }}
-          className="flex flex-col items-center gap-0.5 p-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+          className="flex flex-1 flex-col items-center justify-center py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground active:scale-95"
         >
-          <span className="text-base">🗺️</span>
+          <span className="text-base leading-none mb-1">🗺️</span>
           <span>Trips</span>
         </Link>
         <Link
           to="/trips/new"
-          className="flex flex-col items-center justify-center -mt-4 size-10 rounded-full bg-primary text-primary-foreground shadow-md transition-transform hover:scale-105 active:scale-95"
+          className="flex flex-col items-center justify-center -mt-4 size-11 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-transform active:scale-90"
           title="Plan Trip"
         >
-          <span className="text-lg leading-none font-bold">+</span>
+          <span className="text-xl leading-none font-black">+</span>
         </Link>
         <Link
           to="/explore"
           activeProps={{ className: "text-primary font-bold" }}
-          className="flex flex-col items-center gap-0.5 p-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+          className="flex flex-1 flex-col items-center justify-center py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground active:scale-95"
         >
-          <span className="text-base">🧭</span>
+          <span className="text-base leading-none mb-1">🧭</span>
           <span>Explore</span>
         </Link>
         <Link
           to="/profile"
           activeProps={{ className: "text-primary font-bold" }}
-          className="flex flex-col items-center gap-0.5 p-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+          className="flex flex-1 flex-col items-center justify-center py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground active:scale-95"
         >
-          <span className="text-base">👤</span>
+          <span className="text-base leading-none mb-1">👤</span>
           <span>Profile</span>
         </Link>
       </div>

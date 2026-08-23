@@ -53,20 +53,20 @@ function TripsPage() {
         {(trips ?? []).map((t, i) => (
           <div
             key={t.id}
-            className="animate-rise flex flex-col gap-4 border border-border bg-card p-5 transition-colors hover:border-foreground md:flex-row md:items-center md:justify-between"
+            className="animate-rise flex flex-col gap-4 border border-border bg-card p-4 sm:p-5 transition-colors hover:border-foreground md:flex-row md:items-center md:justify-between min-w-0"
           >
-            <div className="flex items-start gap-6">
-              <span className="font-mono text-xs text-muted-foreground">
+            <div className="flex items-start gap-3 sm:gap-6 min-w-0 flex-1">
+              <span className="font-mono text-xs text-muted-foreground shrink-0 mt-0.5">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <div>
-                <h3 className="text-xl font-bold tracking-tight">{t.name}</h3>
+              <div className="min-w-0 flex-1">
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight break-words">{t.name}</h3>
                 <p className="font-mono text-[10px] uppercase text-muted-foreground">
                   {shortDate(t.start_date)} – {shortDate(t.end_date)} ·{" "}
                   {dayCount(t.start_date, t.end_date)} days · {t.is_public ? "public" : "private"}
                 </p>
                 {t.description && (
-                  <p className="mt-2 max-w-[60ch] text-sm text-muted-foreground">{t.description}</p>
+                  <p className="mt-1.5 max-w-[60ch] text-xs sm:text-sm text-muted-foreground break-words">{t.description}</p>
                 )}
               </div>
             </div>
