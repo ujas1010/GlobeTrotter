@@ -119,18 +119,30 @@ function BudgetPage() {
           <h2 className="border-b border-border pb-2 font-mono text-[10px] font-bold uppercase tracking-widest">
             Activity spend per day
           </h2>
-          <div className="mt-4 flex h-48 items-end gap-1 overflow-x-auto pb-2">
-            {days.map((d) => (
-              <div key={d} className="group flex min-w-[12px] flex-1 flex-col items-center justify-end">
-                <span className="mb-1 font-mono text-[9px] opacity-0 group-hover:opacity-100">
-                  {currency(perDay[d] ?? 0)}
-                </span>
-                <div
-                  className="w-full bg-primary/70 transition-colors group-hover:bg-primary"
-                  style={{ height: `${((perDay[d] ?? 0) / maxDay) * 100}%`, minHeight: 2 }}
-                />
-              </div>
-            ))}
+          <div className="mt-4 flex h-48 items-end gap-1.5 overflow-x-auto pb-2">
+            {days.map((d) => {
+              const daySpend = perDay[d] ?? 0;
+              const heightPct = maxDay > 0 && daySpend > 0 ? Math.max(4, Math.round((daySpend / maxDay) * 100)) : 0;
+              return (
+                <div key={d} className="group flex h-full min-w-[20px] flex-1 flex-col items-center justify-end">
+                  <span className="mb-1 font-mono text-[9px] font-medium opacity-0 transition-opacity group-hover:opacity-100 whitespace-nowrap">
+                    {currency(daySpend)}
+                  </span>
+                  <div className="relative flex h-36 w-full items-end rounded-t-sm bg-muted/40">
+                    <div
+                      className="w-full rounded-t-sm bg-primary transition-all duration-300 group-hover:bg-primary/80"
+                      style={{
+                        height: `${heightPct}%`,
+                        minHeight: 2,
+                      }}
+                    />
+                  </div>
+                  <span className="mt-1.5 font-mono text-[8px] uppercase text-muted-foreground group-hover:text-foreground">
+                    {shortDate(d)}
+                  </span>
+                </div>
+              );
+            })}
           </div>
           <div className="mt-2 flex justify-between font-mono text-[9px] uppercase text-muted-foreground">
             <span>{shortDate(trip.start_date)}</span>
