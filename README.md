@@ -1,8 +1,10 @@
 <div align="center">
 
-# 🧭 GlobeTrotter
+  <img src="public/favicon.png" alt="GlobeTrotter Logo" width="88" height="88" style="border-radius: 14px; margin-bottom: 8px;" />
 
-### **Next-Gen Multi-City Travel Planner & Itinerary Engine**
+  # GlobeTrotter
+
+  ### **Next-Gen Multi-City Travel Planner & Itinerary Engine**
 
 A modern, full-stack travel planning platform with day-wise itinerary builder, dynamic budget tracking, global destination discovery, and responsive mobile-first design.
 
