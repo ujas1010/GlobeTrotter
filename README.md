@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="public/favicon.png" alt="GlobeTrotter Logo" width="88" height="88" style="border-radius: 14px; margin-bottom: 8px;" />
+  <img src="public/favicon.png" alt="GlobeTrotter Logo" width="30" height="30" style="border-radius: 14px; margin-bottom: 8px;" />
 
   # GlobeTrotter
 
