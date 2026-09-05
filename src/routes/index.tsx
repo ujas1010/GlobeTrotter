@@ -106,6 +106,17 @@ function Landing() {
           </div>
         </section>
       </main>
+
+      <footer className="border-t border-border px-4 py-6 text-center text-xs text-muted-foreground sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 sm:flex-row">
+          <p>© {new Date().getFullYear()} GlobeTrotter. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link to="/privacy" className="hover:text-foreground transition-colors underline">
+              Privacy Policy
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
