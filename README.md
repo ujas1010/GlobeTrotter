@@ -121,9 +121,9 @@ npm install
 ### 3. Setup Environment Variables
 Create a `.env` file in the root directory:
 ```env
-VITE_SUPABASE_URL=https://ndjuumcxpvhogdkgefxd.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_DNHzd-qPNHnvhSqw9TGyGQ_7LNfRh0x
-VITE_GOOGLE_CLIENT_ID=441133810472-2155s8a4uujj3i60gf40q2chui4jl5ll.apps.googleusercontent.com
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your-supabase-publishable-key
+VITE_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
 ```
 
 ### 4. Run Development Server
